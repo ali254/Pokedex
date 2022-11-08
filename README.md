@@ -6,7 +6,7 @@ This is a web api for consuming https://pokeapi.co/.
 
 Clone this project or download zip file.
 
-Api has swagger so can test api from browser and view api documentation "localhost:<port>/swagger"
+Api has swagger so can test api from browser and view api documentation "localhost:portNumber/swagger"
 
 ## Docker
 
