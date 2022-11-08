@@ -34,10 +34,14 @@ Api has swagger so can test api from browser and view api documentation "localho
 
 ### Caching
 
-### Store results in nosql like mongodb so can use future data 
+Currently it uses basic in memory caching but a better upgrade for production would be to use a distributed cache i.e. Redis Cache
 
 ### Use translations for error messages
 
+Currently error messages are hard coded but future improvements would mean to use resx translations in different languages
+
 ### additional layers and depth to api
+
+More depth can be added to project with a further abstraction between the data source (pokeapi) and the translation api (could be relocated to separate layer). Thus allowing for more interchangeability.
 
 ### Detailed api documentation
