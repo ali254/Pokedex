@@ -6,11 +6,8 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
 using Moq;
-using Pokedex.Web.Controllers;
 using Pokedex.Web.Validation;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Pokedex.Web.Tests

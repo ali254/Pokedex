@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pokedex.Core.Constants;
-using Pokedex.Core.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Pokedex.Web.Validation
 {

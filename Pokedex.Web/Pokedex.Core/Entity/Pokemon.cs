@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Core.Entity
 {
@@ -15,6 +11,6 @@ namespace Pokedex.Core.Entity
         public bool IsLegendary { get; set; }
 
         [JsonProperty("flavor_text_entries")]
-        public List<PokemonDescription> Descriptions { get; set; }
+        public IEnumerable<PokemonDescription> Descriptions { get; set; }
     }
 }

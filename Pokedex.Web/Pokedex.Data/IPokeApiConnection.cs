@@ -6,6 +6,6 @@ namespace Pokedex.Data
 {
     public interface IPokeApiConnection
     {
-       public Task<Pokemon> GetAsync(string pokemonName, CancellationToken cancellationToken);
+        public Task<Pokemon> GetAsync(string pokemonName, CancellationToken cancellationToken);
     }
 }

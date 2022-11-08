@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pokedex.Core.DTO;
-using Pokedex.Data;
 using Pokedex.Service;
 using Pokedex.Web.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,7 +29,7 @@ namespace Pokedex.Web.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Pokemon>> Get([FromRoute]string name, CancellationToken cancellationToken)
+        public async Task<ActionResult<Pokemon>> Get([FromRoute] string name, CancellationToken cancellationToken)
         {
             return Ok(await _pokemonService.GetAsync(name, cancellationToken));
         }
@@ -49,7 +44,7 @@ namespace Pokedex.Web.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Pokemon>> GetTranslated([FromRoute]string name, CancellationToken cancellationToken)
+        public async Task<ActionResult<Pokemon>> GetTranslated([FromRoute] string name, CancellationToken cancellationToken)
         {
             return Ok(await _pokemonService.GetTranslatedAsync(name, cancellationToken));
         }

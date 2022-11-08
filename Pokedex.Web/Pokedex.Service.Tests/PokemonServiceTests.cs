@@ -17,6 +17,7 @@ namespace Pokedex.Service.Tests
         private readonly Mock<IPokeApiConnection> _pokeApiConnection;
         private readonly Mock<IFunTranslationConnection> _funTranslationConnection;
         private readonly Mock<IMapper> _mapper;
+
         public PokemonServiceTests()
         {
             _pokeApiConnection = new Mock<IPokeApiConnection>();

@@ -1,33 +1,36 @@
-using System;
-using System.Net.Http;
-using Xunit;
 using Moq;
+using Moq.Protected;
+using Newtonsoft.Json;
+using Pokedex.Core.Entity;
+using Pokedex.Core.Exceptions;
+using Pokedex.Data.Caching;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Pokedex.Core.Exceptions;
-using System.Net;
-using Moq.Protected;
-using Pokedex.Core.Entity;
-using Newtonsoft.Json;
-using System.Linq;
+using Xunit;
 
 namespace Pokedex.Data.Tests
 {
     public class PokeApiConnectionTests
     {
         private readonly PokeApiConnection _pokeApiConnection;
-        private HttpClient _httpclient;
-        private Mock<HttpMessageHandler> _httpMessageHandler;
+        private readonly HttpClient _httpclient;
+        private readonly Mock<HttpMessageHandler> _httpMessageHandler;
+        private readonly Mock<ICachingService> _cachingService;
 
         public PokeApiConnectionTests()
         {
             _httpMessageHandler = new Mock<HttpMessageHandler>();
+            _cachingService = new Mock<ICachingService>();
             _httpclient = new HttpClient(_httpMessageHandler.Object);
             _httpclient.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon-species/");
 
-            _pokeApiConnection = new PokeApiConnection(_httpclient);
+            _pokeApiConnection = new PokeApiConnection(_httpclient, _cachingService.Object);
         }
-        
+
         [Fact]
         public async Task Get_SendsHttpRequest()
         {

@@ -3,12 +3,11 @@ using Moq.Protected;
 using Newtonsoft.Json;
 using Pokedex.Core.Entity;
 using Pokedex.Core.Enums;
+using Pokedex.Data.Caching;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,16 +17,18 @@ namespace Pokedex.Data.Tests
     public class FunTranslationConnectionTests
     {
         private readonly FunTranslationConnection _funTranslationConnection;
-        private HttpClient _httpclient;
-        private Mock<HttpMessageHandler> _httpMessageHandler;
+        private readonly HttpClient _httpclient;
+        private readonly Mock<HttpMessageHandler> _httpMessageHandler;
+        private readonly Mock<ICachingService> _cachingService;
 
         public FunTranslationConnectionTests()
         {
             _httpMessageHandler = new Mock<HttpMessageHandler>();
+            _cachingService = new Mock<ICachingService>();
             _httpclient = new HttpClient(_httpMessageHandler.Object);
             _httpclient.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon-species/");
 
-            _funTranslationConnection = new FunTranslationConnection(_httpclient);
+            _funTranslationConnection = new FunTranslationConnection(_httpclient, _cachingService.Object);
         }
 
         [Fact]

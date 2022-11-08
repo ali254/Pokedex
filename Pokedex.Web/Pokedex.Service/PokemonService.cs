@@ -1,11 +1,10 @@
-﻿using Pokedex.Data;
-using System;
-using System.Threading.Tasks;
-using System.Threading;
-using Entity = Pokedex.Core.Entity;
-using DTO = Pokedex.Core.DTO;
-using AutoMapper;
+﻿using AutoMapper;
 using Pokedex.Core.Enums;
+using Pokedex.Data;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using DTO = Pokedex.Core.DTO;
 
 namespace Pokedex.Service
 {
@@ -27,8 +26,8 @@ namespace Pokedex.Service
             var result = await _pokeApiConnection.GetAsync(pokemonName, cancellationToken);
 
             return _mapper.Map<DTO.Pokemon>(result);
-        }  
-        
+        }
+
         public async Task<DTO.Pokemon> GetTranslatedAsync(string pokemonName, CancellationToken cancellationToken)
         {
             var result = await GetAsync(pokemonName, cancellationToken);

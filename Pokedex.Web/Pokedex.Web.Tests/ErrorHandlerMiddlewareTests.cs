@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Moq;
 using Pokedex.Core.Exceptions;
 using Pokedex.Web.Middleware;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Pokedex.Core.Entity
+﻿namespace Pokedex.Core.Entity
 {
     public class TranslationContent
     {

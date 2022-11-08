@@ -4,7 +4,6 @@ using Moq;
 using Pokedex.Core.DTO;
 using Pokedex.Service;
 using Pokedex.Web.Controllers;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;

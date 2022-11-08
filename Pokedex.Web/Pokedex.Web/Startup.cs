@@ -1,21 +1,16 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Pokedex.Core.AutoMapper;
 using Pokedex.Data;
+using Pokedex.Data.Caching;
 using Pokedex.Service;
 using Pokedex.Web.Middleware;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pokedex.Web
 {
@@ -39,13 +34,15 @@ namespace Pokedex.Web
             });
             services.AddSingleton(mapperConfig.CreateMapper());
 
-            services.AddHttpClient<IPokeApiConnection, PokeApiConnection>(c => 
+            services.AddHttpClient<IPokeApiConnection, PokeApiConnection>(c =>
                 c.BaseAddress = new Uri(Configuration.GetSection("pokeapi_baseurl").Value));
             services.AddHttpClient<IFunTranslationConnection, FunTranslationConnection>(c =>
                 c.BaseAddress = new Uri(Configuration.GetSection("funtranslation_baseurl").Value));
 
             services.AddTransient<IPokemonService, PokemonService>();
 
+            services.AddMemoryCache();
+            services.AddTransient<ICachingService, CachingService>();
 
             services.AddSwaggerGen(x => x.SwaggerDoc("v1", new OpenApiInfo() { Title = "Pokedex Api", Version = "v1" }));
         }
@@ -59,7 +56,7 @@ namespace Pokedex.Web
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(x => 
+            app.UseSwaggerUI(x =>
             {
                 x.SwaggerEndpoint("/swagger/v1/swagger.json", "Pokedex Api");
                 x.DefaultModelsExpandDepth(-1); //remove schemas
