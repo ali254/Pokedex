@@ -16,7 +16,7 @@ Api has swagger so can test api from browser and view api documentation "localho
 	> docker build -t pokedexapi-image -f Dockerfile .
 - This should create the image for you - confirm the image is created by running the following:
 	> docker images
-- Now run the following the run the docker container with that image
+- Now run the following the run the docker container with that image (Allow access on firewall if prompted)
 	> docker run -d -p 8080:80 --name myPokedexapi pokedexapi-image
 - Now Api should be accessible on http://localhost:8080 and swagger at http://localhost:8080/swagger/
 

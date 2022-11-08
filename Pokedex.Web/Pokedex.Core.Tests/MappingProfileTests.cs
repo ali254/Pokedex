@@ -25,14 +25,14 @@ namespace Pokedex.Core.Tests
                 Habitat = new Entity.NamedEntity() { Name = "grass" },
                 Descriptions = new Entity.PokemonDescription[] {
                     new Entity.PokemonDescription() { FlavorText = "asdasdqweqweqwe", Language = new Entity.NamedEntity() { Name = "fr" } },
-                    new Entity.PokemonDescription() { FlavorText = "lightning\npowers\n", Language = new Entity.NamedEntity() { Name = "en" } },
+                    new Entity.PokemonDescription() { FlavorText = "lightning powers", Language = new Entity.NamedEntity() { Name = "en" } },
                 }
             };
             var dto = new DTO.Pokemon()
             {
                 Name = "raichu",
                 Habitat = "grass",
-                Description = "lightning powers "
+                Description = "lightning powers"
             };
 
             var result = _mapper.Map<DTO.Pokemon>(entity);

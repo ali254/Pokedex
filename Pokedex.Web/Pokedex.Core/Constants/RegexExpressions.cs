@@ -3,7 +3,5 @@
     public static class RegexExpressions
     {
         public const string ValidatePokeApiName = @"^[A-Za-z-]+$";
-
-        public const string RemoveSpecialEscapedCharacters = @"\t|\n|\r|\f";
     }
 }

@@ -13,9 +13,7 @@ namespace Pokedex.Core.AutoMapper
             CreateMap<Entity.Pokemon, DTO.Pokemon>()
                 .ForMember(prop => prop.Habitat, opt => opt.MapFrom(src => src.Habitat.Name))
                 .ForMember(prop => prop.Description,
-                    opt => opt.MapFrom(src =>
-                        Regex.Replace(src.Descriptions.FirstOrDefault(x => x.Language.Name.Equals("en", StringComparison.InvariantCultureIgnoreCase)).FlavorText,
-                            RegexExpressions.RemoveSpecialEscapedCharacters, " ")));
+                    opt => opt.MapFrom(src => src.Descriptions.FirstOrDefault(x => x.Language.Name.Equals("en", StringComparison.InvariantCultureIgnoreCase)).FlavorText));
         }
     }
 }
