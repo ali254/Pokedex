@@ -29,7 +29,7 @@ namespace Pokedex.Data
                 throw new ApiException("PokeApi Error: " + response.ReasonPhrase) { StatusCode = (int)response.StatusCode };
 
             var resultObj = JsonConvert.DeserializeObject<Pokemon>(await response.Content.ReadAsStringAsync());
-            _cachingService.Set<Pokemon>(pokemonName, resultObj, 1);
+            _cachingService.Set(pokemonName, resultObj, 120);
 
             return resultObj;
         }

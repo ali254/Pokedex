@@ -15,7 +15,7 @@ namespace Pokedex.Core.AutoMapper
                 .ForMember(prop => prop.Description,
                     opt => opt.MapFrom(src =>
                         Regex.Replace(src.Descriptions.FirstOrDefault(x => x.Language.Name.Equals("en", StringComparison.InvariantCultureIgnoreCase)).FlavorText,
-                            RegexExpressions.NoSpecialEscapedCharacters, "")));
+                            RegexExpressions.RemoveSpecialEscapedCharacters, " ")));
         }
     }
 }

@@ -17,18 +17,27 @@ namespace Pokedex.Data
 
         public async Task<TranslationResult> GetTranslationAsync(string textToTranslate, FunTranslationEnum translationEnum, CancellationToken cancellationToken)
         {
+            var cacheKey = $"{translationEnum}-{textToTranslate}";
+            if (_cachingService.ContainsKey(cacheKey))
+            {
+                return _cachingService.Get<TranslationResult>(cacheKey);
+            }
+
             using var request = new HttpRequestMessage(HttpMethod.Post, translationEnum.ToString())
             { Content = JsonContent.Create(new { Text = textToTranslate }) };
 
             using var response = await _client.SendAsync(request, HttpCompletionOption.ResponseContentRead, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
+            {
                 return new TranslationResult() { Success = false };
+            }
 
             var jsonResult = await response.Content.ReadAsStringAsync();
 
             var translationResult = JsonConvert.DeserializeObject<TranslationResult>(jsonResult);
             translationResult.Success = true;
+            _cachingService.Set(cacheKey, translationResult, 120);
 
             return translationResult;
         }
