@@ -10,14 +10,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Pokedex.Web/Pokedex.Web.csproj", "Pokedex.Web/"]
-RUN dotnet restore "Pokedex.Web/Pokedex.Web.csproj"
 COPY . .
-WORKDIR "/src/Pokedex.Web"
-RUN dotnet build "Pokedex.Web.csproj" -c Release -o /app/build
+RUN dotnet restore "Pokedex.Web/Pokedex.Web.csproj"
+
+WORKDIR "/src"
+RUN dotnet build "Pokedex.Web/Pokedex.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Pokedex.Web.csproj" -c Release -o /app/publish
+RUN dotnet publish "Pokedex.Web/Pokedex.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
