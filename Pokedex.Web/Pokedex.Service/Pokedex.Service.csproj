@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pokedex.Core\Pokedex.Core.csproj" />
+    <ProjectReference Include="..\Pokedex.Data\Pokedex.Data.csproj" />
   </ItemGroup>
 
 </Project>
